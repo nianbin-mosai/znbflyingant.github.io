@@ -90,15 +90,28 @@
 
 
 
-<meta name="description" content="活在当下，做好自己">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Znb&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="1. 什么是内存泄漏？JVM内存管理 关于内存泄漏我们要知道，JVM内存分配的几种策略。 1.静态的 静态的存储区，内存在程序编译的时候就已经分配好了，这块内存在程序整个运行期间都一直存在，它主要存放静态数据、全局的static数据和一些常量。 2.栈式的 在执行方法时，方法一些内部变量的存储都可以放在栈上面创建，方法执行结束的时候这些存储单元就会自动被注释掉。栈 内存包括分配的运算速度很快，因为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android性能优化-内存泄漏的8个Case">
+<meta property="og:url" content="http://yoursite.com/2016/05/10/内存泄漏/index.html">
 <meta property="og:site_name" content="Znb&#39;s Blog">
-<meta property="og:description" content="活在当下，做好自己">
+<meta property="og:description" content="1. 什么是内存泄漏？JVM内存管理 关于内存泄漏我们要知道，JVM内存分配的几种策略。 1.静态的 静态的存储区，内存在程序编译的时候就已经分配好了，这块内存在程序整个运行期间都一直存在，它主要存放静态数据、全局的static数据和一些常量。 2.栈式的 在执行方法时，方法一些内部变量的存储都可以放在栈上面创建，方法执行结束的时候这些存储单元就会自动被注释掉。栈 内存包括分配的运算速度很快，因为">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3288620-9101a1a8ac16bd95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3288620-6b8bb8cd5214ea4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3288620-2092f8261b85a097?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3288620-5b137d53e60829fe?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3288620-6ecf9393e33b529c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3288620-80bfea483cc2e9ca?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3288620-d716d7d3980df027?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3288620-5eba61b4cd8d16c8?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3288620-94574e50afc8f72c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3288620-8df38343519decd5?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3288620-1cf895283662861c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-05-10T07:06:08.579Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Znb&#39;s Blog">
-<meta name="twitter:description" content="活在当下，做好自己">
+<meta name="twitter:title" content="Android性能优化-内存泄漏的8个Case">
+<meta name="twitter:description" content="1. 什么是内存泄漏？JVM内存管理 关于内存泄漏我们要知道，JVM内存分配的几种策略。 1.静态的 静态的存储区，内存在程序编译的时候就已经分配好了，这块内存在程序整个运行期间都一直存在，它主要存放静态数据、全局的static数据和一些常量。 2.栈式的 在执行方法时，方法一些内部变量的存储都可以放在栈上面创建，方法执行结束的时候这些存储单元就会自动被注释掉。栈 内存包括分配的运算速度很快，因为">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3288620-9101a1a8ac16bd95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -126,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/05/10/内存泄漏/"/>
 
 
 
 
 
-  <title>Znb's Blog</title>
+  <title>Android性能优化-内存泄漏的8个Case | Znb's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -157,9 +170,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -252,9 +263,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -280,9 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/05/10/内存泄漏/" itemprop="url">Android性能优化-内存泄漏的8个Case</a></h1>
+          <h1 class="post-title" itemprop="name headline">Android性能优化-内存泄漏的8个Case</h1>
         
 
         <div class="post-meta">
@@ -329,9 +338,7 @@
       
 
       
-        
-          
-            <h4 id="1-什么是内存泄漏？"><a href="#1-什么是内存泄漏？" class="headerlink" title="1. 什么是内存泄漏？"></a>1. 什么是内存泄漏？</h4><p>JVM内存管理</p>
+        <h4 id="1-什么是内存泄漏？"><a href="#1-什么是内存泄漏？" class="headerlink" title="1. 什么是内存泄漏？"></a>1. 什么是内存泄漏？</h4><p>JVM内存管理</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/3288620-9101a1a8ac16bd95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>关于内存泄漏我们要知道，JVM内存分配的几种策略。</p>
 <p>1.静态的</p>
 <p>静态的存储区，内存在程序编译的时候就已经分配好了，这块内存在程序整个运行期间都一直存在，它主要存放静态数据、全局的static数据和一些常量。</p>
@@ -446,20 +453,27 @@
 <p>Tip：tv.setOnClickListener();//监听执行完回收对象，不用考虑内存泄漏<br>tv.getViewTreeObserver().addOnWindowFocusChangeListene,add监听，放到集合里面，需要考虑内存泄漏</p>
 </blockquote>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
@@ -467,21 +481,22 @@
       
 
       
-
+        
       
 
       
+
       
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -489,6 +504,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -508,8 +527,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -553,6 +581,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-什么是内存泄漏？"><span class="nav-number">1.</span> <span class="nav-text">1. 什么是内存泄漏？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Android开发常见的内存泄漏"><span class="nav-number">2.</span> <span class="nav-text">2. Android开发常见的内存泄漏</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -666,6 +710,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
