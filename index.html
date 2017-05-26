@@ -310,6 +310,304 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/12/生产者和消费者问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="边城的znb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Znb's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/12/生产者和消费者问题/" itemprop="url">生产者消费者问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-12T18:09:56+08:00">
+                2017-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaSE</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">package 生产者消费者;</div><div class="line"></div><div class="line">public class ProducerConsumerTest &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		PublicResource resource = new PublicResource();</div><div class="line">		new Thread(new ProducerThread(resource)).start();</div><div class="line">        new Thread(new ConsumerThread(resource)).start();</div><div class="line">        new Thread(new ProducerThread(resource)).start();</div><div class="line">        new Thread(new ConsumerThread(resource)).start();</div><div class="line">        new Thread(new ProducerThread(resource)).start();</div><div class="line">        new Thread(new ConsumerThread(resource)).start();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">package 生产者消费者;</div><div class="line">/**</div><div class="line"> * 生产者线程，负责生产公共资源</div><div class="line"> * @author dream</div><div class="line"> *</div><div class="line"> */</div><div class="line">public class ProducerThread implements Runnable&#123;</div><div class="line"></div><div class="line">	private PublicResource resource;</div><div class="line"></div><div class="line">	</div><div class="line">	public ProducerThread(PublicResource resource) &#123;</div><div class="line">		this.resource = resource;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	@Override</div><div class="line">	public void run() &#123;</div><div class="line">		while (true) &#123;</div><div class="line">			try &#123;</div><div class="line">				Thread.sleep((long) (Math.random() * 1000));</div><div class="line">			&#125; catch (InterruptedException e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">			resource.increase();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">package 生产者消费者;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 消费者线程，负责消费公共资源</div><div class="line"> * @author dream</div><div class="line"> *</div><div class="line"> */</div><div class="line">public class ConsumerThread implements Runnable&#123;</div><div class="line"></div><div class="line">	private PublicResource resource;</div><div class="line">	</div><div class="line">	</div><div class="line">	public ConsumerThread(PublicResource resource) &#123;</div><div class="line">		this.resource = resource;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	@Override</div><div class="line">	public void run() &#123;</div><div class="line">		while (true) &#123;</div><div class="line">			try &#123;</div><div class="line">				Thread.sleep((long) (Math.random() * 1000));</div><div class="line">			&#125; catch (InterruptedException e) &#123;</div><div class="line">				// TODO Auto-generated catch block</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">			resource.decrease();</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">	</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">package 生产者消费者;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 公共资源类</div><div class="line"> * @author dream</div><div class="line"> *</div><div class="line"> */</div><div class="line">public class PublicResource &#123;</div><div class="line"></div><div class="line">	private int number = 0;</div><div class="line">	private int size = 10;</div><div class="line">	</div><div class="line">	/**</div><div class="line">	 * 增加公共资源</div><div class="line">	 */</div><div class="line">	public synchronized void increase()</div><div class="line">	&#123;</div><div class="line">		while (number &gt;= size) &#123;</div><div class="line">			try &#123;</div><div class="line">				wait();</div><div class="line">			&#125; catch (InterruptedException e) &#123;</div><div class="line">				// TODO Auto-generated catch block</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		number++;</div><div class="line">		System.out.println(&quot;生产了1个，总共有&quot; + number);</div><div class="line">		notifyAll();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	</div><div class="line">	/**</div><div class="line">	 * 减少公共资源</div><div class="line">	 */</div><div class="line">	public synchronized void decrease()</div><div class="line">	&#123;</div><div class="line">		while (number &lt;= 0) &#123;</div><div class="line">			try &#123;</div><div class="line">				wait();</div><div class="line">			&#125; catch (InterruptedException e) &#123;</div><div class="line">				// TODO Auto-generated catch block</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		number--;</div><div class="line">		System.out.println(&quot;消费了1个，总共有&quot; + number);</div><div class="line">		notifyAll();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/12/Java并发基础知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="边城的znb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Znb's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/12/Java并发基础知识/" itemprop="url">Java并发基础知识</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-12T18:02:40+08:00">
+                2017-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaSE</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>（Executor框架和多线程基础）</p>
+<p><strong>Thread与Runable如何实现多线程</strong></p>
+<p>Java 5以前实现多线程有两种实现方法：一种是继承Thread类；另一种是实现Runnable接口。两种方式都要通过重写run()方法来定义线程的行为，推荐使用后者，因为Java中的继承是单继承，一个类有一个父类，如果继承了Thread类就无法再继承其他类了，显然使用Runnable接口更为灵活。</p>
+<p>实现Runnable接口相比继承Thread类有如下优势：</p>
+<ol>
+<li>可以避免由于Java的单继承特性而带来的局限</li>
+<li>增强程序的健壮性，代码能够被多个程序共享，代码与数据是独立的</li>
+<li>适合多个相同程序代码的线程区处理同一资源的情况</li>
+</ol>
+<p>补充：Java 5以后创建线程还有第三种方式：实现Callable接口，该接口中的call方法可以在线程执行结束时产生一个返回值，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">class MyTask implements Callable&lt;Integer&gt; &#123;  </div><div class="line">    private int upperBounds;  </div><div class="line">      </div><div class="line">    public MyTask(int upperBounds) &#123;  </div><div class="line">        this.upperBounds = upperBounds;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    @Override  </div><div class="line">    public Integer call() throws Exception &#123;  </div><div class="line">        int sum = 0;   </div><div class="line">        for(int i = 1; i &lt;= upperBounds; i++) &#123;  </div><div class="line">            sum += i;  </div><div class="line">        &#125;  </div><div class="line">        return sum;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">public class Test &#123;  </div><div class="line">  </div><div class="line">    public static void main(String[] args) throws Exception &#123;  </div><div class="line">        List&lt;Future&lt;Integer&gt;&gt; list = new ArrayList&lt;&gt;();  </div><div class="line">        ExecutorService service = Executors.newFixedThreadPool(10);  </div><div class="line">        for(int i = 0; i &lt; 10; i++) &#123;  </div><div class="line">            list.add(service.submit(new MyTask((int) (Math.random() * 100))));  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        int sum = 0;  </div><div class="line">        for(Future&lt;Integer&gt; future : list) &#123;  </div><div class="line">            while(!future.isDone()) ;  </div><div class="line">            sum += future.get();  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        System.out.println(sum);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>线程同步的方法有什么；锁，synchronized块，信号量等</strong></p>
+<p><strong>锁的等级：方法锁、对象锁、类锁</strong></p>
+<p><strong>生产者消费者模式的几种实现，阻塞队列实现，sync关键字实现，lock实现,reentrantLock等</strong></p>
+<p><strong>ThreadLocal的设计理念与作用，ThreadPool用法与优势（这里在Android SDK原生的AsyncTask底层也有使用）</strong></p>
+<p><strong>线程池的底层实现和工作原理（建议写一个雏形简版源码实现）</strong></p>
+<p><strong>几个重要的线程api，interrupt，wait，sleep，stop等等</strong></p>
+<p><strong>写出生产者消费者模式。</strong></p>
+<p><strong>ThreadPool用法与优势。</strong></p>
+<p><strong>Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。</strong></p>
+<p><strong>wait()和sleep()的区别。</strong></p>
+<p>sleep()方法是线程类（Thread）的静态方法，导致此线程暂停执行指定时间，将执行机会给其他线程，但是监控状态依然保持，到时后会自动恢复（线程回到就绪（ready）状态），因为调用sleep 不会释放对象锁。wait()是Object 类的方法，对此对象调用wait()方法导致本线程放弃对象锁(线程暂停执行)，进入等待此对象的等待锁定池，只有针对此对象发出notify 方法（或notifyAll）后本线程才进入对象锁定池准备获得对象锁进入就绪状态。</p>
+<p>###3、IO（IO,NIO，目前okio已经被集成Android包）</p>
+<p><strong>IO框架主要用到什么设计模式</strong></p>
+<p>JDK的I/O包中就主要使用到了两种设计模式：Adatper模式和Decorator模式。</p>
+<p><strong>NIO包有哪些结构？分别起到的作用？</strong></p>
+<p><strong>NIO针对什么情景会比IO有更好的优化？</strong></p>
+<p><strong>OKIO底层实现</strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/10/Fragment_监听返回键事件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -732,7 +1030,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -743,7 +1041,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -754,7 +1052,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
