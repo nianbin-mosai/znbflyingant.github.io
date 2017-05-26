@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JavaConcurrent," />
 
 
 
@@ -90,16 +90,17 @@
 
 
 
-<meta name="description" content="活在当下，做好自己">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="（Executor框架和多线程基础） Thread与Runable如何实现多线程 Java 5以前实现多线程有两种实现方法：一种是继承Thread类；另一种是实现Runnable接口。两种方式都要通过重写run()方法来定义线程的行为，推荐使用后者，因为Java中的继承是单继承，一个类有一个父类，如果继承了Thread类就无法再继承其他类了，显然使用Runnable接口更为灵活。 实现Runnab">
+<meta name="keywords" content="JavaConcurrent">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java并发基础知识">
+<meta property="og:url" content="http://yoursite.com/2017/03/06/Java并发基础知识/index.html">
 <meta property="og:site_name" content="Znb&#39;s Blog">
-<meta property="og:description" content="活在当下，做好自己">
-<meta property="og:updated_time" content="2017-05-10T10:37:19.889Z">
+<meta property="og:description" content="（Executor框架和多线程基础） Thread与Runable如何实现多线程 Java 5以前实现多线程有两种实现方法：一种是继承Thread类；另一种是实现Runnable接口。两种方式都要通过重写run()方法来定义线程的行为，推荐使用后者，因为Java中的继承是单继承，一个类有一个父类，如果继承了Thread类就无法再继承其他类了，显然使用Runnable接口更为灵活。 实现Runnab">
+<meta property="og:updated_time" content="2017-05-26T02:17:59.803Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
-<meta name="twitter:description" content="活在当下，做好自己">
+<meta name="twitter:title" content="Java并发基础知识">
+<meta name="twitter:description" content="（Executor框架和多线程基础） Thread与Runable如何实现多线程 Java 5以前实现多线程有两种实现方法：一种是继承Thread类；另一种是实现Runnable接口。两种方式都要通过重写run()方法来定义线程的行为，推荐使用后者，因为Java中的继承是单继承，一个类有一个父类，如果继承了Thread类就无法再继承其他类了，显然使用Runnable接口更为灵活。 实现Runnab">
 
 
 
@@ -127,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/06/Java并发基础知识/"/>
 
 
 
 
 
-  <title>标签 | Znb's Blog</title>
+  <title>Java并发基础知识 | Znb's Blog</title>
   
   <style>
   .forkme{
@@ -169,7 +170,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 	<div class="forkme">
 <a target="_blank" href="https://github.com/znbflyingant"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6286ade715e9bea433b4705870de482a654f78a/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png"></a>
@@ -300,25 +301,199 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline">标签</h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/06/Java并发基础知识/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="边城的znb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Znb's Blog">
+    </span>
 
     
-    
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            目前共计 5 个标签
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java并发基础知识</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-06T00:00:00+08:00">
+                2017-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaSE</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
-        <div class="tag-cloud-tags">
-          <a href="/tags/JavaConcurrent/" style="font-size: 30px; color: #111">JavaConcurrent</a> <a href="/tags/gradle/" style="font-size: 30px; color: #111">gradle</a> <a href="/tags/事件传递管理/" style="font-size: 12px; color: #ccc">事件传递管理</a> <a href="/tags/内存管理/" style="font-size: 12px; color: #ccc">内存管理</a> <a href="/tags/性能优化/" style="font-size: 12px; color: #ccc">性能优化</a>
-        </div>
-      </div>
+      </header>
     
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>（Executor框架和多线程基础）</p>
+<p><strong>Thread与Runable如何实现多线程</strong></p>
+<p>Java 5以前实现多线程有两种实现方法：一种是继承Thread类；另一种是实现Runnable接口。两种方式都要通过重写run()方法来定义线程的行为，推荐使用后者，因为Java中的继承是单继承，一个类有一个父类，如果继承了Thread类就无法再继承其他类了，显然使用Runnable接口更为灵活。</p>
+<p>实现Runnable接口相比继承Thread类有如下优势：</p>
+<ol>
+<li>可以避免由于Java的单继承特性而带来的局限</li>
+<li>增强程序的健壮性，代码能够被多个程序共享，代码与数据是独立的</li>
+<li>适合多个相同程序代码的线程区处理同一资源的情况</li>
+</ol>
+<p>补充：Java 5以后创建线程还有第三种方式：实现Callable接口，该接口中的call方法可以在线程执行结束时产生一个返回值，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">class MyTask implements Callable&lt;Integer&gt; &#123;  </div><div class="line">    private int upperBounds;  </div><div class="line">      </div><div class="line">    public MyTask(int upperBounds) &#123;  </div><div class="line">        this.upperBounds = upperBounds;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    @Override  </div><div class="line">    public Integer call() throws Exception &#123;  </div><div class="line">        int sum = 0;   </div><div class="line">        for(int i = 1; i &lt;= upperBounds; i++) &#123;  </div><div class="line">            sum += i;  </div><div class="line">        &#125;  </div><div class="line">        return sum;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">public class Test &#123;  </div><div class="line">  </div><div class="line">    public static void main(String[] args) throws Exception &#123;  </div><div class="line">        List&lt;Future&lt;Integer&gt;&gt; list = new ArrayList&lt;&gt;();  </div><div class="line">        ExecutorService service = Executors.newFixedThreadPool(10);  </div><div class="line">        for(int i = 0; i &lt; 10; i++) &#123;  </div><div class="line">            list.add(service.submit(new MyTask((int) (Math.random() * 100))));  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        int sum = 0;  </div><div class="line">        for(Future&lt;Integer&gt; future : list) &#123;  </div><div class="line">            while(!future.isDone()) ;  </div><div class="line">            sum += future.get();  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        System.out.println(sum);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>线程同步的方法有什么；锁，synchronized块，信号量等</strong></p>
+<p><strong>锁的等级：方法锁、对象锁、类锁</strong></p>
+<p><strong>生产者消费者模式的几种实现，阻塞队列实现，sync关键字实现，lock实现,reentrantLock等</strong></p>
+<p><strong>ThreadLocal的设计理念与作用，ThreadPool用法与优势（这里在Android SDK原生的AsyncTask底层也有使用）</strong></p>
+<p><strong>线程池的底层实现和工作原理（建议写一个雏形简版源码实现）</strong></p>
+<p><strong>几个重要的线程api，interrupt，wait，sleep，stop等等</strong></p>
+<p><strong>写出生产者消费者模式。</strong></p>
+<p><strong>ThreadPool用法与优势。</strong></p>
+<p><strong>Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。</strong></p>
+<p><strong>wait()和sleep()的区别。</strong></p>
+<p>sleep()方法是线程类（Thread）的静态方法，导致此线程暂停执行指定时间，将执行机会给其他线程，但是监控状态依然保持，到时后会自动恢复（线程回到就绪（ready）状态），因为调用sleep 不会释放对象锁。wait()是Object 类的方法，对此对象调用wait()方法导致本线程放弃对象锁(线程暂停执行)，进入等待此对象的等待锁定池，只有针对此对象发出notify 方法（或notifyAll）后本线程才进入对象锁定池准备获得对象锁进入就绪状态。</p>
+<p>###3、IO（IO,NIO，目前okio已经被集成Android包）</p>
+<p><strong>IO框架主要用到什么设计模式</strong></p>
+<p>JDK的I/O包中就主要使用到了两种设计模式：Adatper模式和Decorator模式。</p>
+<p><strong>NIO包有哪些结构？分别起到的作用？</strong></p>
+<p><strong>NIO针对什么情景会比IO有更好的优化？</strong></p>
+<p><strong>OKIO底层实现</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaConcurrent/" rel="tag"># JavaConcurrent</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/09/Fragment_监听返回键事件/" rel="next" title="Fragment---监听返回键事件">
+                <i class="fa fa-chevron-left"></i> Fragment---监听返回键事件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/06/Android中图片的三级缓存/" rel="prev" title="Android中图片的三级缓存">
+                Android中图片的三级缓存 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -531,6 +706,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
